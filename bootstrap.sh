@@ -15,13 +15,13 @@ sudo apt-get update
 ## --------------------
 ## Celery Setup
 ## --------------------
-sudo apt-get install celery rabbitmq-server
+sudo pip install celery
 
 
 ## set up Rabbit MQ Access control
-sudo rabbitmqctl add_user myuser mypassword
-sudo rabbitmqctl add_vhost myvhost
-sudo rabbitmqctl set_permissions -p myvhost myuser "" ".*" ".*"
+#sudo rabbitmqctl add_user myuser mypassword
+#sudo rabbitmqctl add_vhost myvhost
+#sudo rabbitmqctl set_permissions -p myvhost myuser "" ".*" ".*"
 
 
 
@@ -41,6 +41,7 @@ sudo apt-get install -y pyrap python-scipy ipython vim \
 	xvfb
 
 ## compile and install trap
+rm -rf /vagrant/tmp
 mkdir -p /vagrant/tmp
 cd /vagrant/tmp
 git clone https://richarms:mosfet1@github.com/transientskp/tkp.git || true
@@ -51,8 +52,8 @@ make
 sudo make install
 cd ..
 sudo pip install -U distribute
-pip install -r requirements.txt
-#rm -rf /vagrant/tmp
+sudo pip install -r requirements.txt
+rm -rf /vagrant/tmp
 
 ## create TraP project
 ## -------------------
@@ -74,10 +75,11 @@ cd vagrantproject
 
 # setup & configure banana
 cd /opt
-git clone https://github.com/transientskp/banana || true
+rm -rf banana
+sudo git clone https://github.com/transientskp/banana || true
 cd banana
-cp bananaproject/settings/local_example.py bananaproject/settings/local.py
-pip install -r requirements.txt
+sudo cp bananaproject/settings/local_example.py bananaproject/settings/local.py
+sudo pip install -r requirements.txt
 
 
 #----------------------
@@ -88,17 +90,17 @@ pip install -r requirements.txt
 #sudo apt-get update
 #sudo apt-get install -y software-properties-common python-software-properties \
 #    python-pip libzmq-dev python2.7-dev build-essential supervisor xvfb
-#
+
 ## add the SKA-SA launchpad PPA
-#sudo add-apt-repository ppa:ska-sa/main
-#sudo apt-get update
-#
+sudo add-apt-repository ppa:ska-sa/main
+sudo apt-get update
+
 ## install the radio astro software from the SKA repo
-#sudo apt-get install -y libcasacore-dev \
-#    casacore-data lwimager python-astlib python-kittens \
-#    python-purr python-pyxis python-tigger \
-#    python-meqtrees-timba python-meqtrees-cattery makems python-owlcat meqtrees
-#
+sudo apt-get install -y libcasacore-dev \
+    casacore-data lwimager python-astlib python-kittens \
+    python-purr python-pyxis python-tigger \
+    python-meqtrees-timba python-meqtrees-cattery makems python-owlcat meqtrees
+
 ## install all python modules
 #sudo pip install -r /vagrant/vagrant/requirements.txt
 #
