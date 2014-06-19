@@ -7,12 +7,28 @@ deb http://za.archive.ubuntu.com/ubuntu/ precise-updates main universe multivers
 deb http://security.ubuntu.com/ubuntu precise-security main universe multiverse
 EOL
 
+sudo apt-get update
+sudo apt-get install -y software-properties-common python-software-properties
+sudo apt-get update
+
+
+## --------------------
+## Celery Setup
+## --------------------
+sudo apt-get install celery rabbitmq-server
+
+
+## set up Rabbit MQ Access control
+sudo rabbitmqctl add_user myuser mypassword
+sudo rabbitmqctl add_vhost myvhost
+sudo rabbitmqctl set_permissions -p myvhost myuser "" ".*" ".*"
+
+
+
+
 ## --------------------
 ## TraP Setup
 ## --------------------
-'''sudo apt-get update
-sudo apt-get install -y software-properties-common python-software-properties
-sudo apt-get update
 
 sudo add-apt-repository -y ppa:gijzelaar/aartfaac
 sudo apt-get update
@@ -62,34 +78,34 @@ git clone https://github.com/transientskp/banana || true
 cd banana
 cp bananaproject/settings/local_example.py bananaproject/settings/local.py
 pip install -r requirements.txt
-'''
+
 
 #----------------------
 # Install meqtrees/UberRadioAstronomy software suite 
 #----------------------
 #----------------------
 # install software from ubuntu repositories
-sudo apt-get update
-sudo apt-get install -y software-properties-common python-software-properties \
-    python-pip libzmq-dev python2.7-dev build-essential supervisor xvfb
-
-# add the SKA-SA launchpad PPA
-sudo add-apt-repository ppa:ska-sa/main
-sudo apt-get update
-
-# install the radio astro software from the SKA repo
-sudo apt-get install -y libcasacore-dev \
-    casacore-data lwimager python-astlib python-kittens \
-    python-purr python-pyxis python-tigger \
-    python-meqtrees-timba python-meqtrees-cattery makems python-owlcat meqtrees
-
-# install all python modules
-sudo pip install -r /vagrant/vagrant/requirements.txt
-
-# configure a ipython noteboot service
-sudo cp /vagrant/vagrant/supervisor-ipython.conf /etc/supervisor/conf.d/ipython.conf
-sudo service supervisor stop
-sudo service supervisor start
+#sudo apt-get update
+#sudo apt-get install -y software-properties-common python-software-properties \
+#    python-pip libzmq-dev python2.7-dev build-essential supervisor xvfb
+#
+## add the SKA-SA launchpad PPA
+#sudo add-apt-repository ppa:ska-sa/main
+#sudo apt-get update
+#
+## install the radio astro software from the SKA repo
+#sudo apt-get install -y libcasacore-dev \
+#    casacore-data lwimager python-astlib python-kittens \
+#    python-purr python-pyxis python-tigger \
+#    python-meqtrees-timba python-meqtrees-cattery makems python-owlcat meqtrees
+#
+## install all python modules
+#sudo pip install -r /vagrant/vagrant/requirements.txt
+#
+## configure a ipython noteboot service
+#sudo cp /vagrant/vagrant/supervisor-ipython.conf /etc/supervisor/conf.d/ipython.conf
+#sudo service supervisor stop
+#sudo service supervisor start
 
 
 
