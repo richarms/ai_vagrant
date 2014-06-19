@@ -1,0 +1,7 @@
+taskname           = "imview"
+raster             =  "323758775.image/"
+contour            =  {}
+zoom               =  1
+axes               =  {}
+out                =  ""
+#imview(raster="323758775.image/",contour={},zoom=1,axes={},out="")
