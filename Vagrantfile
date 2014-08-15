@@ -11,6 +11,7 @@ Vagrant.configure("2") do |config|
     config.vm.provision :file, :source => "pg_hba.conf", :destination => "/vagrant/postgres/pg_hba.conf"
     config.vm.provision :shell, :path => "bootstrap.sh"
     config.vm.synced_folder "/Users/richarms/vm_data", "/data", owner: "vagrant", group: "vagrant"
+    #config.vm.synced_folder "/Volumes/UNTITLED/", "/untitled", owner: "vagrant", group: "vagrant"
     config.vm.network "forwarded_port", guest: 8880, host: 8880
     config.ssh.forward_x11 = true
     config.vm.provider "virtualbox" do |v|

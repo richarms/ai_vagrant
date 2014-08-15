@@ -8,21 +8,21 @@ deb http://security.ubuntu.com/ubuntu precise-security main universe multiverse
 EOL
 
 sudo apt-get update
-sudo apt-get install -y software-properties-common python-software-properties
+sudo apt-get install -y software-properties-common python-software-properties \
+	python-pip python-dev build-essential
 sudo apt-get update
 
-
 ## --------------------
+## AI Setup
+## --------------------
+
 ## Celery Setup
-## --------------------
 sudo pip install celery
-
 
 ## set up Rabbit MQ Access control
 #sudo rabbitmqctl add_user myuser mypassword
 #sudo rabbitmqctl add_vhost myvhost
 #sudo rabbitmqctl set_permissions -p myvhost myuser "" ".*" ".*"
-
 
 
 
@@ -79,6 +79,7 @@ rm -rf banana
 sudo git clone https://github.com/transientskp/banana || true
 cd banana
 sudo cp bananaproject/settings/local_example.py bananaproject/settings/local.py
+sudo pip install astropy
 sudo pip install -r requirements.txt
 
 
@@ -92,14 +93,14 @@ sudo pip install -r requirements.txt
 #    python-pip libzmq-dev python2.7-dev build-essential supervisor xvfb
 
 ## add the SKA-SA launchpad PPA
-sudo add-apt-repository ppa:ska-sa/main
-sudo apt-get update
+#sudo add-apt-repository ppa:ska-sa/main
+#sudo apt-get update
 
 ## install the radio astro software from the SKA repo
-sudo apt-get install -y libcasacore-dev \
-    casacore-data lwimager python-astlib python-kittens \
-    python-purr python-pyxis python-tigger \
-    python-meqtrees-timba python-meqtrees-cattery makems python-owlcat meqtrees
+#sudo apt-get install -y libcasacore-dev \
+#    casacore-data lwimager python-astlib python-kittens \
+#    python-purr python-pyxis python-tigger \
+#    python-meqtrees-timba python-meqtrees-cattery makems python-owlcat meqtrees
 
 ## install all python modules
 #sudo pip install -r /vagrant/vagrant/requirements.txt
